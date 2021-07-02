@@ -1,0 +1,37 @@
+{% extends 'users/base.html' %}
+<!-- https://stackoverflow.com/questions/62243926/how-do-i-make-bootstrap-card-go-next-to-each-other-when-they-are-generated-by-dj-->
+{% block content %}
+<!-- <table class="table table-sm" style="max-width: None; table-layout: fixed">
+    <thead>
+        <th>Sub/Board</th>
+        <th>Post Title</th>
+        <th>Post</th>
+    </thead>
+    <tbody>
+        {% for post in object_list %}
+        <tr>
+            <td class="text-wrap">{{ post.forum }}</td>
+            <td class="text-wrap">{{ post.title }}</td>
+            <td class="text-wrap">{{ post.post|slice:"250" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table> -->
+<div class="container-fluid">
+{% for post in object_list %}
+<!-- {% if forloop.counter0|divisibleby:2 %} <div class="row"> {%  endif %} -->
+    <div class="card">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ post.forum }}</h6>
+        <p class="card-text">{{ post.post|slice:"250"}}</p>
+        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary">Read Now</button>
+            <button type="button" class="btn btn-secondary">Watchlist</button>
+            <button type="button" class="btn btn-primary">Reject</button>
+        </div>
+    </div>
+    <br/>
+<!-- {%  if forloop.counter|divisibleby:2 or forloop.last %}</div><br>{%  endif %} -->
+{% endfor %}
+</div>
+{% endblock %}
